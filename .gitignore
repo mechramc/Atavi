@@ -1,0 +1,9 @@
+.DS_Store
+.firecrawl/
+.atavi/
+node_modules/
+coverage/
+dist/
+tmp/
+*.log
+
