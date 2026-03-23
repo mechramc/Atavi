@@ -22,6 +22,7 @@ The package ships:
 
 - `protocol/ATAVI.md` as the canonical protocol
 - `protocol/agents/*` for Theorist, Experimentalist, Scout, Critic, and Synthesist
+- `prompts/*` for Codex, Claude, and Gemini starter prompts
 - `templates/*` for briefs, PODs, CPRs, and final reports
 - `bin/atavi.js` as the CLI entrypoint
 - `HOSTS.md` for Codex, Claude, and Gemini loading guidance
@@ -89,6 +90,7 @@ The returned path contains:
 
 - `protocol/ATAVI.md`
 - `protocol/agents/*`
+- `prompts/*`
 - `templates/*`
 
 Your host should load those files plus `.atavi/brief.md`, `.atavi/config.json`,
@@ -215,6 +217,12 @@ Then have the host:
 
 See [HOSTS.md](./HOSTS.md) for Codex, Claude, and Gemini-specific loading guidance.
 
+Starter prompts are also shipped under:
+
+- `prompts/codex.md`
+- `prompts/claude.md`
+- `prompts/gemini.md`
+
 ## Development
 
 From a repo checkout:
@@ -255,6 +263,9 @@ atavi init .
 ## Related Docs
 
 - [HOSTS.md](./HOSTS.md)
+- `prompts/codex.md`
+- `prompts/claude.md`
+- `prompts/gemini.md`
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [TESTING.md](./TESTING.md)
 - [CONTRIBUTING.md](./CONTRIBUTING.md)

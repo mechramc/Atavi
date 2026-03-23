@@ -168,9 +168,9 @@ Status keys:
 - [x] Publish the package to npm.
 - [ ] Add realistic example workspaces under `examples/`.
 - [ ] Add a full end-to-end demo from brief to final report.
-- [ ] Add host-specific starter prompts for Codex.
-- [ ] Add host-specific starter prompts for Claude.
-- [ ] Add host-specific starter prompts for Gemini.
+- [x] Add host-specific starter prompts for Codex.
+- [x] Add host-specific starter prompts for Claude.
+- [x] Add host-specific starter prompts for Gemini.
 - [ ] Add host-specific starter scripts where they improve onboarding.
 - [ ] Create a short docs site or GitHub Pages version of the protocol.
 - [ ] Gather real user feedback on the workflow and refine the protocol from usage.

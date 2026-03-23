@@ -142,6 +142,10 @@ Recommended load order:
 Codex should keep orchestration file-first and write durable artifacts into
 `.atavi/` rather than relying on hidden memory.
 
+Starter prompt:
+
+- `prompts/codex.md`
+
 ## Claude
 
 Recommended load order:
@@ -154,6 +158,10 @@ Recommended load order:
 
 Claude should treat `.atavi/` as the source of truth for resumability and audit.
 
+Starter prompt:
+
+- `prompts/claude.md`
+
 ## Gemini
 
 Recommended load order:
@@ -165,6 +173,10 @@ Recommended load order:
 5. registries, logs, and existing pass artifacts
 
 Gemini should preserve the same file contract as every other host.
+
+Starter prompt:
+
+- `prompts/gemini.md`
 
 ## Failure Modes And Escalation
 

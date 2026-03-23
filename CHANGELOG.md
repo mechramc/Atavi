@@ -18,3 +18,4 @@
 - add `migrate` command for safe workspace schema upgrades
 - add memory import/export helpers for `.atavi/memory`
 - add release-surface verification and npm-based CI coverage
+- add starter prompt files for Codex, Claude, and Gemini

@@ -16,6 +16,7 @@
     "bin/",
     "src/",
     "protocol/",
+    "prompts/",
     "templates/",
     "README.md",
     "HOSTS.md",
