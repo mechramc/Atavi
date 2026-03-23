@@ -221,7 +221,7 @@ Equivalent raw Node commands:
 ```bash
 node scripts/check-manifest.js
 node scripts/check-release-surface.js
-node --test --test-isolation=none
+node test/run-all.js
 ```
 
 ## Related Docs

@@ -15,7 +15,7 @@
 3. Update CLI code when scaffold or package behavior changes.
 4. Add or update tests for every contract-level change.
 5. Run `node scripts/check-manifest.js`.
-6. Run `node --test --test-isolation=none`.
+6. Run `node test/run-all.js`.
 
 ## What changes require extra care
 

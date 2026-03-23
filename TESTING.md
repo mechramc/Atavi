@@ -56,7 +56,7 @@ grow toward:
 
 ```bash
 node scripts/check-manifest.js
-node --test --test-isolation=none
+node test/run-all.js
 ```
 
 ## CI expectation
