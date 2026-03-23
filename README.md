@@ -1,85 +1,130 @@
 # ATAVI
 
-ATAVI is a multi-agent research refinement protocol for serious technical work.
-It does not pretend a single prompt can replace disciplined research. It gives
-your host AI a structure: isolate roles, force cross-pollination, verify
-novelty, converge on the smallest high-signal experiment slate, and leave an
-inspectable paper trail behind.
+ATAVI is a host-agnostic multi-agent research refinement protocol. It gives a
+host AI a strict file-first workflow for:
 
-The package is intentionally thin. The host AI does the orchestration. ATAVI
-ships the protocol, agent role files, templates, and a CLI that scaffolds a
-real `.atavi/` workspace in your project.
+- formalizing claims
+- designing experiments
+- checking novelty
+- forcing cross-pollination between roles
+- converging on the smallest high-signal experiment slate
+- leaving an inspectable paper trail in `.atavi/`
 
-## Why this exists
+ATAVI is intentionally thin. The package does not run the research loop for
+you. It ships the protocol, role files, templates, and CLI helpers that a host
+AI can load and execute.
 
-Most agentic research workflows fail in one of two ways:
+## What You Get
 
-- they generate lots of ideas and do not eliminate bad ones
-- they converge too early and mistake agreement for rigor
+The package ships:
 
-ATAVI forces a different shape:
-
-- Theorist formalizes claims
-- Experimentalist designs tests
-- Scout gates on novelty
-- Critic breaks weak reasoning when risk is high
-- Synthesist imports useful methods across domains
-
-Every pass leaves files behind. Every kill is logged. Every final experiment
-can be traced back through the argument that kept it alive.
-
-## What you install
-
-This repo ships:
-
-- `protocol/ATAVI.md` as the canonical markdown protocol
-- `protocol/agents/*` for role definitions
-- `templates/*` for brief, POD, CPR, and report formats
+- `protocol/ATAVI.md` as the canonical protocol
+- `protocol/agents/*` for Theorist, Experimentalist, Scout, Critic, and Synthesist
+- `templates/*` for briefs, PODs, CPRs, and final reports
 - `bin/atavi.js` as the CLI entrypoint
-- `src/*` for scaffold helpers, doctor checks, and protocol manifests
-- `HOSTS.md` for Codex, Claude, and Gemini loading and resume guidance
-- project docs covering architecture, contribution workflow, and testing
+- `HOSTS.md` for Codex, Claude, and Gemini loading guidance
+- scaffold, validation, migration, and memory-transfer helpers
 
-## Quick start
+## Requirements
 
-### Install globally
+- Node.js `>=20`
+- a host AI that can read and write files
+- web search capability for valid Scout runs
+
+Without web search, Scout mode and full novelty gating are not valid.
+
+## Install
+
+### Global install
 
 ```bash
 npm install -g atavi
 ```
 
-### Or run from a checkout
+### Run with `npx`
 
 ```bash
-node bin/atavi.js --help
-node bin/atavi.js --path
-node bin/atavi.js init .
-node bin/atavi.js migrate .
-node bin/atavi.js memory-export .
-node bin/atavi.js memory-import ./memory-export .
-node bin/atavi.js doctor
-node bin/atavi.js validate
-node bin/atavi.js resume-check
+npx atavi --help
 ```
 
-### Typical flow
+### Run from a local checkout
 
-1. Put a spec, design doc, proposal, or codebase in front of your host AI.
+```bash
+git clone https://github.com/mechramc/Atavi.git
+cd Atavi
+npm install
+node bin/atavi.js --help
+```
+
+## Quick Start
+
+### 1. Create a workspace
+
+From the project you want to analyze:
+
+```bash
+atavi init .
+atavi validate .
+```
+
+This creates a `.atavi/` workspace with the brief, registries, pass folders,
+logs, report file, and memory buckets the host will use.
+
+### 2. Point your host at the protocol
+
+```bash
+atavi --path
+```
+
+The returned path contains:
+
+- `protocol/ATAVI.md`
+- `protocol/agents/*`
+- `templates/*`
+
+Your host should load those files plus `.atavi/brief.md`, `.atavi/config.json`,
+and `.atavi/status.md`.
+
+### 3. Run the protocol
+
+Typical flow:
+
+1. Put a spec, proposal, design doc, or codebase in front of your host AI.
 2. Run `atavi init .` in the project root.
-3. Tell the host AI to run ATAVI on the project.
-4. The host AI reads the packaged protocol and writes into `.atavi/`.
+3. Tell the host AI to run ATAVI on the workspace.
+4. The host writes PODs, CPRs, synthesis records, decision records, registry updates, and memory artifacts into `.atavi/`.
 5. Review `.atavi/ATAVI-REPORT.md` when the run finishes.
 
-## Commands
+### 4. Resume or repair later
+
+```bash
+atavi resume-check .
+atavi migrate .
+```
+
+Use `resume-check` before resuming an interrupted run. Use `migrate` to add any
+missing scaffold files or schema metadata without overwriting user edits.
+
+## Command Reference
+
+### `atavi --help`
+
+Print CLI help.
+
+### `atavi --version`
+
+Print the package version.
 
 ### `atavi --path`
 
-Print the absolute path to the packaged protocol root. Host AIs can use this to
-load `protocol/ATAVI.md`, agent role files, and templates.
+Print the absolute path to the packaged protocol root so a host can load the
+protocol, role files, and templates.
 
 ### `atavi init [target]`
 
-Scaffold `.atavi/` with:
+Create a `.atavi/` workspace in `target` without overwriting existing files.
+
+The scaffold includes:
 
 - `brief.md`
 - `config.json`
@@ -104,62 +149,84 @@ Scaffold `.atavi/` with:
 
 ### `atavi doctor`
 
-Verify the package contains the full protocol and template surface.
+Verify that the packaged protocol and template assets exist.
+
+### `atavi validate [target]`
+
+Validate `.atavi/config.json` against the current package contract.
+
+### `atavi resume-check [target]`
+
+Validate `.atavi/config.json` and `.atavi/status.md` before a host resumes an
+interrupted run.
 
 ### `atavi migrate [target]`
 
-Add missing scaffold files and current schema metadata to an existing `.atavi/`
-workspace without overwriting user-edited files.
+Upgrade an existing `.atavi/` workspace to the current schema by adding missing
+files and schema metadata without overwriting user-edited files.
 
 ### `atavi memory-export [target] [output]`
 
 Copy `.atavi/memory` to an export directory for reuse in another workspace.
 
+Example:
+
+```bash
+atavi memory-export . .atavi/exports/memory
+```
+
 ### `atavi memory-import <source> [target]`
 
 Copy memory files into `.atavi/memory` without overwriting existing entries.
 
-### `atavi validate [target]`
+Example:
 
-Validate `.atavi/config.json` for the current thin package contract.
+```bash
+atavi memory-import .atavi/exports/memory .
+```
 
-### `atavi resume-check [target]`
+## Recommended Host Workflow
 
-Validate `.atavi/config.json` and `.atavi/status.md` before a host attempts to
-resume an interrupted run.
+Use this order:
 
-## Product shape
+```bash
+atavi --path
+atavi init .
+atavi validate .
+atavi resume-check .
+```
 
-ATAVI should feel more like a disciplined research operating system than a toy
-CLI. The repo is therefore structured the same way the product is structured:
+Then have the host:
 
-- clear top-level README
-- explicit architecture document
-- explicit testing strategy
-- committed protocol assets
-- tests for the package contract
-- CI to stop the protocol package from drifting
+1. confirm or refine `.atavi/brief.md`
+2. load `protocol/ATAVI.md` and the relevant role files
+3. write pass artifacts into `.atavi/pass-N/`
+4. update registries and logs during synthesis
+5. export reusable memory into `.atavi/memory/`
 
-That product shape is informed in part by `gstack`: serious docs, committed
-assets, a visible architecture, and a repo that can be cloned and understood
-without hidden setup magic.
+See [HOSTS.md](./HOSTS.md) for Codex, Claude, and Gemini-specific loading guidance.
 
-## Host requirements
+## Development
 
-ATAVI assumes the host AI can:
+From a repo checkout:
 
-- read and write files
-- maintain multiple isolated agent contexts
-- browse the web for Scout runs
+```bash
+npm install
+npm test
+npm run ci
+```
 
-Without web search, Scout mode and full novelty gating are not valid.
+Equivalent raw Node commands:
 
-See `HOSTS.md` for explicit host loading order, registry ownership, and resume
-workflow guidance.
+```bash
+node scripts/check-manifest.js
+node scripts/check-release-surface.js
+node --test --experimental-test-isolation=none
+```
 
-## Current status
+## Related Docs
 
-This repository now contains the real package skeleton, protocol markdown,
-agent role files, templates, docs, tests, and CI scaffolding. The next layer of
-work is to deepen the host integration and memory machinery without changing
-the package shape.
+- [HOSTS.md](./HOSTS.md)
+- [ARCHITECTURE.md](./ARCHITECTURE.md)
+- [TESTING.md](./TESTING.md)
+- [CONTRIBUTING.md](./CONTRIBUTING.md)
