@@ -14,6 +14,8 @@ ATAVI is intentionally thin. The package does not run the research loop for
 you. It ships the protocol, role files, templates, and CLI helpers that a host
 AI can load and execute.
 
+ATAVI is published on npm as [`atavi`](https://www.npmjs.com/package/atavi).
+
 ## What You Get
 
 The package ships:
@@ -39,6 +41,13 @@ Without web search, Scout mode and full novelty gating are not valid.
 
 ```bash
 npm install -g atavi
+```
+
+### Verify the install
+
+```bash
+atavi --version
+atavi --help
 ```
 
 ### Run with `npx`
@@ -222,6 +231,25 @@ Equivalent raw Node commands:
 node scripts/check-manifest.js
 node scripts/check-release-surface.js
 node test/run-all.js
+```
+
+## npm Package
+
+Registry page:
+
+- `https://www.npmjs.com/package/atavi`
+
+Install:
+
+```bash
+npm install -g atavi
+```
+
+Run:
+
+```bash
+atavi --help
+atavi init .
 ```
 
 ## Related Docs
