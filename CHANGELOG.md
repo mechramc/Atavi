@@ -20,9 +20,10 @@
 - add release-surface verification and npm-based CI coverage
 - add starter prompt files for Codex, Claude, and Gemini
 
-## Unreleased
+## 0.1.1
 
 - strengthened host guidance and starter prompts so Codex, Claude, and Gemini
   are expected to ask clarifying questions, present explicit options when the
   run shape is ambiguous, and keep visible progress updates flowing during ATAVI
   startup and execution
+- document the reliable global upgrade command as `npm install -g atavi@latest`

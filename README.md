@@ -57,6 +57,13 @@ atavi --version
 atavi --help
 ```
 
+### Update an existing global install
+
+```bash
+npm install -g atavi@latest
+atavi --version
+```
+
 ### Run with `npx`
 
 ```bash
@@ -264,6 +271,12 @@ Install:
 
 ```bash
 npm install -g atavi
+```
+
+Update:
+
+```bash
+npm install -g atavi@latest
 ```
 
 Run:

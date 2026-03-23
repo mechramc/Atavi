@@ -7,7 +7,7 @@ import { commandPath } from "./commands/path.js";
 import { commandResumeCheck } from "./commands/resume-check.js";
 import { commandValidate } from "./commands/validate.js";
 
-const VERSION = "0.1.0";
+const VERSION = "0.1.1";
 
 function helpText() {
   return `atavi

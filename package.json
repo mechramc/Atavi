@@ -1,6 +1,6 @@
 {
   "name": "atavi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Host-agnostic multi-agent iterative research refinement protocol.",
   "type": "module",
   "license": "MIT",
