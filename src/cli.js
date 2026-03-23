@@ -1,5 +1,8 @@
 import { commandDoctor } from "./commands/doctor.js";
 import { commandInit } from "./commands/init.js";
+import { commandMemoryExport } from "./commands/memory-export.js";
+import { commandMemoryImport } from "./commands/memory-import.js";
+import { commandMigrate } from "./commands/migrate.js";
 import { commandPath } from "./commands/path.js";
 import { commandResumeCheck } from "./commands/resume-check.js";
 import { commandValidate } from "./commands/validate.js";
@@ -16,6 +19,9 @@ Usage:
   atavi --version
   atavi --path
   atavi init [target]
+  atavi migrate [target]
+  atavi memory-export [target] [output]
+  atavi memory-import <source> [target]
   atavi doctor
   atavi validate [target]
   atavi resume-check [target]
@@ -23,6 +29,9 @@ Usage:
 Commands:
   --path      Print the absolute path to the packaged protocol directory.
   init        Scaffold a .atavi workspace in the target directory.
+  migrate     Add missing scaffold files and schema metadata to an existing workspace.
+  memory-export Copy `.atavi/memory` to an export directory.
+  memory-import Copy memory files into `.atavi/memory` without overwriting existing entries.
   doctor      Verify packaged protocol files and basic host prerequisites.
   validate    Validate the scaffolded .atavi/config.json contract.
   resume-check Validate `.atavi/config.json` and `.atavi/status.md` for resume safety.
@@ -57,6 +66,21 @@ export async function runCli(argv, io = process) {
 
   if (command === "doctor") {
     await commandDoctor(io);
+    return;
+  }
+
+  if (command === "memory-export") {
+    await commandMemoryExport(rest, io);
+    return;
+  }
+
+  if (command === "memory-import") {
+    await commandMemoryImport(rest, io);
+    return;
+  }
+
+  if (command === "migrate") {
+    await commandMigrate(rest, io);
     return;
   }
 

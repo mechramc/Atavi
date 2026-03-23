@@ -15,7 +15,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Verify package manifest
-        run: node scripts/check-manifest.js
-      - name: Run tests
-        run: node --test --experimental-test-isolation=none
+      - name: Install package metadata
+        run: npm install
+      - name: Run package CI checks
+        run: npm run ci
+      - name: Run npm test
+        run: npm test

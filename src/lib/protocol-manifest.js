@@ -21,6 +21,8 @@ const TEMPLATE_FILES = [
   "templates/output-report.md"
 ];
 
+export const CURRENT_WORKSPACE_SCHEMA_VERSION = 1;
+
 export function protocolRoot() {
   return ROOT;
 }
@@ -58,6 +60,7 @@ Selected agents:
       relativePath: "config.json",
       contents: `${JSON.stringify(
         {
+          schemaVersion: CURRENT_WORKSPACE_SCHEMA_VERSION,
           mode: "full",
           maxPasses: 4,
           maxExperiments: 5,

@@ -112,6 +112,8 @@ exist only in chat output.
 - Claim-level novelty evidence belongs in `.atavi/registries/prior-art.md`.
 - Experiment-level novelty verdicts belong in `.atavi/registries/experiments.md`.
 - Reusable memory exports belong in `.atavi/memory/` after the run.
+- Hosts may use `atavi memory-export` and `atavi memory-import` to move durable
+  memory artifacts between workspaces without changing their contents.
 
 ## Resume Workflow
 

@@ -42,6 +42,7 @@ Status keys:
 - [x] Make `doctor` print host prerequisites for valid runs.
 - [x] Add a thin config validation command that checks `.atavi/config.json`.
 - [x] Add a thin resume-state validation command that checks whether a run can be resumed safely.
+- [x] Add migration tooling for future `.atavi/` schema changes.
 
 ## 3. Workspace Scaffold Contract
 
@@ -73,7 +74,6 @@ Status keys:
 - [x] Define which `status.md` fields are mandatory for host resume logic.
 - [x] Define how `current_phase` maps to the four refinement phases.
 - [x] Define how convergence state is represented across passes.
-- [ ] Add migration handling for future `.atavi/` schema changes.
 
 ## 5. Protocol-Driven Workspace Coverage
 
@@ -109,7 +109,7 @@ Status keys:
 - [x] Define memory scoping fields such as domain and keywords.
 - [x] Define memory expiration fields and stale-entry handling.
 - [x] Define contradiction handling for superseded memory.
-- [ ] Add import/export helpers for memory artifacts without embedding orchestration logic.
+- [x] Add import/export helpers for memory artifacts without embedding orchestration logic.
 
 ## 8. Host Integration Guidance
 
@@ -133,6 +133,7 @@ Status keys:
 - [x] Verify CLI behavior for `doctor`.
 - [x] Verify CLI behavior for `validate`.
 - [x] Verify CLI behavior for `resume-check`.
+- [x] Verify CLI behavior for `migrate`.
 - [x] Verify scaffold manifest contents.
 - [x] Verify memory bucket scaffolding exists.
 - [x] Add idempotent `init` coverage that asserts existing user edits are preserved.
@@ -151,8 +152,8 @@ Status keys:
 - [x] Provide a manifest verification script.
 - [x] Provide a test command runnable via raw Node.
 - [x] Provide a CI-oriented aggregate command.
-- [ ] Ensure the documented npm-based test path works in a clean release environment.
-- [ ] Add release-time verification that packaged files match the CLI doctor contract.
+- [x] Ensure the documented npm-based test path works in a clean release environment.
+- [x] Add release-time verification that packaged files match the CLI doctor contract.
 
 ## 11. Non-Goals To Preserve
 

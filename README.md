@@ -54,6 +54,9 @@ npm install -g atavi
 node bin/atavi.js --help
 node bin/atavi.js --path
 node bin/atavi.js init .
+node bin/atavi.js migrate .
+node bin/atavi.js memory-export .
+node bin/atavi.js memory-import ./memory-export .
 node bin/atavi.js doctor
 node bin/atavi.js validate
 node bin/atavi.js resume-check
@@ -102,6 +105,19 @@ Scaffold `.atavi/` with:
 ### `atavi doctor`
 
 Verify the package contains the full protocol and template surface.
+
+### `atavi migrate [target]`
+
+Add missing scaffold files and current schema metadata to an existing `.atavi/`
+workspace without overwriting user-edited files.
+
+### `atavi memory-export [target] [output]`
+
+Copy `.atavi/memory` to an export directory for reuse in another workspace.
+
+### `atavi memory-import <source> [target]`
+
+Copy memory files into `.atavi/memory` without overwriting existing entries.
 
 ### `atavi validate [target]`
 

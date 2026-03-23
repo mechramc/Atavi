@@ -15,3 +15,6 @@
 - add explicit per-pass synthesis and decision placeholders
 - define canonical memory entry formats and governance fields
 - add host loading and resume guidance for Codex, Claude, and Gemini
+- add `migrate` command for safe workspace schema upgrades
+- add memory import/export helpers for `.atavi/memory`
+- add release-surface verification and npm-based CI coverage

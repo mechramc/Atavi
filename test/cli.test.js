@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import os from "node:os";
 import path from "node:path";
-import { mkdtemp, readFile, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { runCli } from "../src/cli.js";
 
 function createIo(cwd) {
@@ -153,6 +153,127 @@ test("atavi init does not overwrite existing workspace files", async () => {
   const brief = await readFile(path.join(tmp, ".atavi", "brief.md"), "utf8");
   assert.equal(brief, "# User Edited Brief\n");
   assert.match(io.getStdout(), /Created 0 new file\(s\)\. Workspace status: ready\./);
+});
+
+test("atavi migrate upgrades an older workspace without overwriting user files", async () => {
+  const tmp = await mkdtemp(path.join(os.tmpdir(), "atavi-"));
+  const io = createIo(tmp);
+  const workspace = path.join(tmp, ".atavi");
+
+  const originalCwd = process.cwd();
+  process.chdir(tmp);
+  try {
+    await mkdir(workspace, { recursive: true });
+    await writeFile(path.join(tmp, ".atavi", "brief.md"), "# Older Brief\n", "utf8");
+    await writeFile(
+      path.join(tmp, ".atavi", "config.json"),
+      `${JSON.stringify(
+        {
+          mode: "full",
+          maxPasses: 4,
+          maxExperiments: 5,
+          convergenceThreshold: 0.7,
+          agents: ["theorist", "experimentalist", "scout"],
+          memory: {
+            enabled: true,
+            scope: "project"
+          }
+        },
+        null,
+        2
+      )}\n`,
+      "utf8"
+    );
+    await writeFile(path.join(tmp, ".atavi", "status.md"), "# ATAVI Status\n\nrun_status: initialized\ncurrent_pass: 0\ncurrent_phase: not_started\nconvergence_score: n/a\nblocking_concerns: none\ntoken_estimate: unknown\nlast_updated: pending\n", "utf8");
+
+    await runCli(["migrate", "."], io);
+  } finally {
+    process.chdir(originalCwd);
+  }
+
+  const brief = await readFile(path.join(workspace, "brief.md"), "utf8");
+  const config = await readFile(path.join(workspace, "config.json"), "utf8");
+  const runLog = await readFile(path.join(workspace, "run-log.md"), "utf8");
+  assert.equal(brief, "# Older Brief\n");
+  assert.match(config, /"schemaVersion": 1/);
+  assert.match(runLog, /ATAVI Run Log/);
+  assert.match(io.getStdout(), /ATAVI migrate: OK/);
+});
+
+test("atavi migrate fails for invalid existing config", async () => {
+  const tmp = await mkdtemp(path.join(os.tmpdir(), "atavi-"));
+  const io = createIo(tmp);
+
+  const originalCwd = process.cwd();
+  process.chdir(tmp);
+  try {
+    await mkdir(path.join(tmp, ".atavi"), { recursive: true });
+    await writeFile(path.join(tmp, ".atavi", "config.json"), "{not-json", "utf8");
+    await assert.rejects(() => runCli(["migrate", "."], io), /not valid JSON/);
+  } finally {
+    process.chdir(originalCwd);
+  }
+
+  assert.match(io.getStdout(), /ATAVI migrate: FAIL/);
+});
+
+test("atavi memory-export copies the workspace memory tree", async () => {
+  const tmp = await mkdtemp(path.join(os.tmpdir(), "atavi-"));
+  const io = createIo(tmp);
+  const exportDir = path.join(tmp, "memory-export");
+
+  const originalCwd = process.cwd();
+  process.chdir(tmp);
+  try {
+    await runCli(["init", "."], io);
+    await writeFile(
+      path.join(tmp, ".atavi", "memory", "strategy-insights", "insight.md"),
+      "# Insight\n",
+      "utf8"
+    );
+    await runCli(["memory-export", ".", exportDir], io);
+  } finally {
+    process.chdir(originalCwd);
+  }
+
+  const exportedInsight = await readFile(path.join(exportDir, "strategy-insights", "insight.md"), "utf8");
+  assert.equal(exportedInsight, "# Insight\n");
+  assert.match(io.getStdout(), /ATAVI memory-export: OK/);
+});
+
+test("atavi memory-import copies missing memory files without overwriting existing ones", async () => {
+  const tmp = await mkdtemp(path.join(os.tmpdir(), "atavi-"));
+  const io = createIo(tmp);
+  const sourceDir = path.join(tmp, "source-memory");
+
+  await mkdir(path.join(sourceDir, "strategy-insights"), { recursive: true });
+  await writeFile(path.join(sourceDir, "strategy-insights", "imported.md"), "# Imported\n", "utf8");
+
+  const originalCwd = process.cwd();
+  process.chdir(tmp);
+  try {
+    await runCli(["init", "."], io);
+    await writeFile(
+      path.join(tmp, ".atavi", "memory", "strategy-insights", "README.md"),
+      "# Existing README\n",
+      "utf8"
+    );
+    await runCli(["memory-import", sourceDir, "."], io);
+  } finally {
+    process.chdir(originalCwd);
+  }
+
+  const imported = await readFile(
+    path.join(tmp, ".atavi", "memory", "strategy-insights", "imported.md"),
+    "utf8"
+  );
+  const existingReadme = await readFile(
+    path.join(tmp, ".atavi", "memory", "strategy-insights", "README.md"),
+    "utf8"
+  );
+  assert.equal(imported, "# Imported\n");
+  assert.equal(existingReadme, "# Existing README\n");
+  assert.match(io.getStdout(), /ATAVI memory-import: OK/);
 });
 
 test("atavi resume-check passes for scaffolded workspace", async () => {
