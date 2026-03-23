@@ -23,6 +23,8 @@ Current coverage:
 - `--path`
 - `init`
 - `doctor`
+- `validate`
+- `resume-check`
 
 ### Layer 3: Scaffold contract
 
@@ -34,6 +36,10 @@ Current coverage:
 - idempotent init behavior
 - registry and report placeholders
 - explicit memory bucket scaffolding
+- pass and log placeholder scaffolding
+- snapshot coverage for scaffolded markdown
+- deeper memory layout coverage
+- host compatibility coverage for Codex, Claude, and Gemini guidance
 
 ## Planned deepening inside this repo
 
@@ -42,7 +48,7 @@ grow toward:
 
 - config schema validation tests
 - snapshot tests for scaffolded markdown files
-- resume-state tests around `status.md` and `config.json`
+- deeper resume-state tests around `status.md` and `config.json`
 - memory layout tests
 - host compatibility tests for Codex / Claude / Gemini loading patterns
 

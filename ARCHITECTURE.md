@@ -45,6 +45,9 @@ Researcher / Product Builder
   brief.md
   config.json
   status.md
+  conflicts.md
+  kill-log.md
+  run-log.md
   pass-N/
   registries/
   memory/
@@ -96,6 +99,16 @@ The host AI applies accepted changes during synthesis.
 
 This is the key guardrail against drift and hidden state.
 
+The root workspace also carries shared process artifacts such as `conflicts.md`,
+`kill-log.md`, and `run-log.md` so synthesis and final reporting have stable
+canonical locations.
+
+Per-pass host artifacts live under `pass-N/`, where agent PODs, CPRs,
+`synthesis.md`, and `decision.md` make each refinement cycle inspectable.
+
+Reusable memory exports belong in the scoped bucket directories under
+`.atavi/memory/`.
+
 ## Memory architecture
 
 ATAVI needs cross-run memory because the same researcher will often run related
@@ -113,6 +126,9 @@ host can persist artifacts without inventing ad hoc subdirectories.
 Memory needs governance or it turns into an echo chamber. The package docs
 therefore treat expiration, contradiction handling, weighting, and scoping as
 first-class design constraints, not implementation polish.
+
+Those constraints are expressed directly in the scaffolded memory bucket
+READMEs so hosts have a canonical file format for durable memory exports.
 
 ## Why committed assets matter
 

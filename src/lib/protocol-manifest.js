@@ -86,10 +86,81 @@ last_updated: pending
 `
     },
     {
+      relativePath: "conflicts.md",
+      contents: `# ATAVI Conflict List
+
+The host AI records active conflicts, unresolved disagreements, and blocking
+tradeoffs here during synthesis.
+`
+    },
+    {
+      relativePath: "kill-log.md",
+      contents: `# ATAVI Kill Log
+
+Record rejected claims and experiments here with explicit reasons, evidence, and
+novelty verdicts when applicable.
+`
+    },
+    {
+      relativePath: "run-log.md",
+      contents: `# ATAVI Run Log
+
+Use this file for the pass-by-pass process log, including POD completion, CPR
+exchange, synthesis updates, convergence scores, and decision gates.
+`
+    },
+    {
       relativePath: "ATAVI-REPORT.md",
       contents: `# ATAVI Report
 
 This file is populated by the host AI after a run completes.
+`
+    },
+    {
+      relativePath: "pass-1/README.md",
+      contents: `# ATAVI Pass 1
+
+Place independent agent outputs in this directory as:
+
+- theorist-pod.md
+- experimentalist-pod.md
+- scout-pod.md
+- critic-pod.md
+- synthesist-pod.md
+
+The host AI also writes:
+
+- synthesis.md
+- decision.md
+`
+    },
+    {
+      relativePath: "pass-1/synthesis.md",
+      contents: `# ATAVI Pass 1 Synthesis
+
+Summarize accepted registry updates, active conflicts, novelty findings, and
+convergence movement for this pass.
+`
+    },
+    {
+      relativePath: "pass-1/decision.md",
+      contents: `# ATAVI Pass 1 Decision
+
+Record the decision gate outcome for this pass: terminate, continue, or
+escalate, with the rationale and any blocking concerns.
+`
+    },
+    {
+      relativePath: "pass-1/cross-pollination/README.md",
+      contents: `# ATAVI Cross-Pollination
+
+Place CPR outputs in this directory as:
+
+- theorist-cpr.md
+- experimentalist-cpr.md
+- scout-cpr.md
+- critic-cpr.md
+- synthesist-cpr.md
 `
     },
     {
@@ -122,6 +193,19 @@ This file is populated by the host AI after a run completes.
 
 This directory stores persistent prior art cache entries, kill archive records,
 claim patterns, convergence history, and strategy insights for related runs.
+
+Each memory entry should be written as a markdown file in the relevant bucket.
+Use these governance fields consistently:
+
+- Domain:
+- Keywords:
+- Confidence:
+- Expires:
+- Contradicts:
+
+The host AI writes reusable memory exports into these buckets after a run
+finishes. When new evidence contradicts an older memory, create the new entry
+and link the contradiction explicitly rather than mutating history silently.
 `
     },
     {
@@ -130,6 +214,19 @@ claim patterns, convergence history, and strategy insights for related runs.
 
 Store reusable novelty-search findings, source summaries, and scoped retrieval
 metadata here for future ATAVI runs.
+
+Suggested entry format: one file per source or source cluster.
+
+- Source:
+- Retrieved:
+- Domain:
+- Keywords:
+- Confidence:
+- Expires:
+- Contradicts:
+- Summary:
+- Relevance:
+- Reuse Notes:
 `
     },
     {
@@ -138,6 +235,19 @@ metadata here for future ATAVI runs.
 
 Record rejected claims and experiments here, including the evidence or novelty
 verdict that killed them.
+
+Suggested entry format: one file per rejected claim or experiment.
+
+- Killed Item:
+- Item Type:
+- Date:
+- Domain:
+- Keywords:
+- Confidence:
+- Contradicts:
+- Kill Reason:
+- Evidence:
+- Reversal Condition:
 `
     },
     {
@@ -146,6 +256,18 @@ verdict that killed them.
 
 Capture recurring claim structures, failure modes, and useful formalization
 patterns that can accelerate future theorist passes.
+
+Suggested entry format: one file per reusable pattern.
+
+- Pattern Name:
+- Domain:
+- Keywords:
+- Confidence:
+- Expires:
+- Contradicts:
+- Pattern Description:
+- Common Failure Mode:
+- Reuse Guidance:
 `
     },
     {
@@ -154,6 +276,19 @@ patterns that can accelerate future theorist passes.
 
 Track prior run outcomes, convergence scores, and pass-level decision patterns
 so future runs can detect repetition and premature agreement.
+
+Suggested entry format: one file per completed run.
+
+- Run ID:
+- Domain:
+- Keywords:
+- Confidence:
+- Started:
+- Finished:
+- Final Convergence Score:
+- Contradicts:
+- Outcome Summary:
+- Repeated Failure Signals:
 `
     },
     {
@@ -162,6 +297,18 @@ so future runs can detect repetition and premature agreement.
 
 Store durable heuristics about search strategy, evaluation design, and
 cross-domain synthesis that proved useful across runs.
+
+Suggested entry format: one file per durable heuristic.
+
+- Insight Name:
+- Domain:
+- Keywords:
+- Confidence:
+- Expires:
+- Contradicts:
+- Insight:
+- Evidence:
+- Applicability:
 `
     }
   ];

@@ -79,12 +79,15 @@ Each agent reads the other PODs and writes a CPR to
 ### Phase 3: Synthesis
 
 The host AI updates the Claim Registry, Experiment Ledger, Prior Art Registry,
-conflict list, and convergence score.
+conflict list, and convergence score. The host also writes a pass summary to
+`.atavi/pass-N/synthesis.md`.
 
 ### Phase 4: Decision Gate
 
 The host AI either terminates, continues, or escalates to the researcher based
-on convergence, blocking concerns, and surviving experiments.
+on convergence, blocking concerns, and surviving experiments. The pass outcome
+is written to `.atavi/pass-N/decision.md`, and cross-pass state remains visible
+in `.atavi/status.md` and `.atavi/run-log.md`.
 
 ## Novelty Gate
 
@@ -98,6 +101,10 @@ experiment. Verdicts are:
 
 Duplicate or superseded experiments are killed unless the Experimentalist
 supplies a concrete methodological delta and the Scout re-verifies it.
+
+Claim-level novelty evidence is recorded in `.atavi/registries/prior-art.md`.
+Experiment-level novelty verdicts are recorded in
+`.atavi/registries/experiments.md` and summarized in `.atavi/pass-N/synthesis.md`.
 
 ## Convergence
 
@@ -125,6 +132,10 @@ ATAVI stores:
 Memories are scoped by domain and keywords, weighted by confidence, expired
 when stale, and corrected when contradicted by new evidence.
 
+Reusable memory exports are written into `.atavi/memory/` after a run, using
+the bucketed directories for prior art cache, kill archive, claim patterns,
+convergence history, and strategy insights.
+
 ## Output Contract
 
 The final report must include:
@@ -136,4 +147,3 @@ The final report must include:
 - final claim registry
 - final prior art registry
 - full process log
-

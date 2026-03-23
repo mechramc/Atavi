@@ -13,6 +13,7 @@
     "protocol/",
     "templates/",
     "README.md",
+    "HOSTS.md",
     "ARCHITECTURE.md",
     "CONTRIBUTING.md",
     "TESTING.md",
@@ -25,7 +26,7 @@
   "scripts": {
     "test": "node --test --experimental-test-isolation=none",
     "test:watch": "node --test --experimental-test-isolation=none --watch",
-    "lint": "node --check bin/atavi.js && node --check src/cli.js && node --check src/commands/init.js && node --check src/commands/doctor.js && node --check src/commands/path.js && node --check src/lib/filesystem.js && node --check src/lib/protocol-manifest.js",
+    "lint": "node --check bin/atavi.js && node --check src/cli.js && node --check src/commands/init.js && node --check src/commands/doctor.js && node --check src/commands/path.js && node --check src/commands/validate.js && node --check src/commands/resume-check.js && node --check src/lib/filesystem.js && node --check src/lib/protocol-manifest.js && node --check src/lib/config.js && node --check src/lib/status.js",
     "check": "node scripts/check-manifest.js",
     "ci": "node scripts/check-manifest.js && node --test --experimental-test-isolation=none"
   },

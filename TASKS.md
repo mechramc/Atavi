@@ -40,50 +40,50 @@ Status keys:
 - [x] Make `init` avoid overwriting existing scaffold files.
 - [x] Make `doctor` verify packaged protocol and template assets exist.
 - [x] Make `doctor` print host prerequisites for valid runs.
-- [ ] Add a thin config validation command that checks `.atavi/config.json`.
-- [ ] Add a thin resume-state validation command that checks whether a run can be resumed safely.
+- [x] Add a thin config validation command that checks `.atavi/config.json`.
+- [x] Add a thin resume-state validation command that checks whether a run can be resumed safely.
 
 ## 3. Workspace Scaffold Contract
 
 - [x] Scaffold `.atavi/brief.md`.
 - [x] Scaffold `.atavi/config.json`.
 - [x] Scaffold `.atavi/status.md`.
+- [x] Scaffold a canonical conflict log placeholder referenced by synthesis.
+- [x] Scaffold a canonical kill log placeholder referenced by the final report.
+- [x] Scaffold a canonical run log placeholder for process traceability.
 - [x] Scaffold `.atavi/ATAVI-REPORT.md`.
 - [x] Scaffold `.atavi/registries/claims.md`.
 - [x] Scaffold `.atavi/registries/experiments.md`.
 - [x] Scaffold `.atavi/registries/prior-art.md`.
 - [x] Scaffold `.atavi/memory/README.md`.
 - [x] Scaffold explicit memory buckets for prior art cache, kill archive, claim patterns, convergence history, and strategy insights.
-- [ ] Scaffold a canonical `pass-1/` directory placeholder.
-- [ ] Scaffold a canonical `pass-1/cross-pollination/` directory placeholder.
-- [ ] Scaffold a canonical conflict log placeholder referenced by synthesis.
-- [ ] Scaffold a canonical kill log placeholder referenced by the final report.
-- [ ] Scaffold a canonical run log placeholder for process traceability.
+- [x] Scaffold a canonical `pass-1/` directory placeholder.
+- [x] Scaffold a canonical `pass-1/cross-pollination/` directory placeholder.
 
 ## 4. Config And State Semantics
 
 - [x] Seed `config.json` with default mode, pass limits, experiment limits, convergence threshold, agent list, and memory settings.
 - [x] Seed `status.md` with initial run status fields.
-- [ ] Define and enforce the allowed `mode` values from the spec: `full`, `scout`, `theorist`, `vision`, `audit`.
-- [ ] Define and enforce minimum agent requirements for `full` mode.
-- [ ] Validate `maxPasses` as a positive integer.
-- [ ] Validate `maxExperiments` as a positive integer.
-- [ ] Validate `convergenceThreshold` as a bounded numeric value.
-- [ ] Validate memory settings and supported scopes.
-- [ ] Define which `status.md` fields are mandatory for host resume logic.
-- [ ] Define how `current_phase` maps to the four refinement phases.
-- [ ] Define how convergence state is represented across passes.
+- [x] Define and enforce the allowed `mode` values from the spec: `full`, `scout`, `theorist`, `vision`, `audit`.
+- [x] Define and enforce minimum agent requirements for `full` mode.
+- [x] Validate `maxPasses` as a positive integer.
+- [x] Validate `maxExperiments` as a positive integer.
+- [x] Validate `convergenceThreshold` as a bounded numeric value.
+- [x] Validate memory settings and supported scopes.
+- [x] Define which `status.md` fields are mandatory for host resume logic.
+- [x] Define how `current_phase` maps to the four refinement phases.
+- [x] Define how convergence state is represented across passes.
 - [ ] Add migration handling for future `.atavi/` schema changes.
 
 ## 5. Protocol-Driven Workspace Coverage
 
-- [ ] Document the exact file contract for `.atavi/pass-N/[agent]-pod.md`.
-- [ ] Document the exact file contract for `.atavi/pass-N/cross-pollination/[agent]-cpr.md`.
-- [ ] Document where the host records conflict lists during synthesis.
-- [ ] Document where the host records decision-gate outcomes per pass.
-- [ ] Document where the host records novelty verdicts for active claims and experiments.
-- [ ] Document where the host records adversarial-pass escalation when early agreement is suspicious.
-- [ ] Document where the host records reusable memory exports after a run.
+- [x] Document the exact file contract for `.atavi/pass-N/[agent]-pod.md`.
+- [x] Document the exact file contract for `.atavi/pass-N/cross-pollination/[agent]-cpr.md`.
+- [x] Document where the host records conflict lists during synthesis.
+- [x] Document where the host records decision-gate outcomes per pass.
+- [x] Document where the host records novelty verdicts for active claims and experiments.
+- [x] Document where the host records adversarial-pass escalation when early agreement is suspicious.
+- [x] Document where the host records reusable memory exports after a run.
 
 ## 6. Output Contract
 
@@ -100,15 +100,15 @@ Status keys:
 ## 7. Memory Machinery
 
 - [x] Reserve explicit directories for persistent memory buckets.
-- [ ] Define the file format for prior art cache entries.
-- [ ] Define the file format for kill archive entries.
-- [ ] Define the file format for claim pattern entries.
-- [ ] Define the file format for convergence history entries.
-- [ ] Define the file format for strategy insight entries.
-- [ ] Define memory weighting fields such as confidence.
-- [ ] Define memory scoping fields such as domain and keywords.
-- [ ] Define memory expiration fields and stale-entry handling.
-- [ ] Define contradiction handling for superseded memory.
+- [x] Define the file format for prior art cache entries.
+- [x] Define the file format for kill archive entries.
+- [x] Define the file format for claim pattern entries.
+- [x] Define the file format for convergence history entries.
+- [x] Define the file format for strategy insight entries.
+- [x] Define memory weighting fields such as confidence.
+- [x] Define memory scoping fields such as domain and keywords.
+- [x] Define memory expiration fields and stale-entry handling.
+- [x] Define contradiction handling for superseded memory.
 - [ ] Add import/export helpers for memory artifacts without embedding orchestration logic.
 
 ## 8. Host Integration Guidance
@@ -116,14 +116,14 @@ Status keys:
 - [x] State clearly that the host AI is the orchestrator.
 - [x] State clearly that ATAVI must remain host-agnostic.
 - [x] State clearly that web search is required for valid Scout runs.
-- [ ] Document a host loading sequence for Codex.
-- [ ] Document a host loading sequence for Claude.
-- [ ] Document a host loading sequence for Gemini.
-- [ ] Document how a host discovers ATAVI invocation inside a user session.
-- [ ] Document how a host confirms or writes the research brief before the loop starts.
-- [ ] Document how a host selects optional Critic and Synthesist roles.
-- [ ] Document how a host applies accepted registry changes during synthesis.
-- [ ] Document how a host resumes from an interrupted `.atavi/` run.
+- [x] Document a host loading sequence for Codex.
+- [x] Document a host loading sequence for Claude.
+- [x] Document a host loading sequence for Gemini.
+- [x] Document how a host discovers ATAVI invocation inside a user session.
+- [x] Document how a host confirms or writes the research brief before the loop starts.
+- [x] Document how a host selects optional Critic and Synthesist roles.
+- [x] Document how a host applies accepted registry changes during synthesis.
+- [x] Document how a host resumes from an interrupted `.atavi/` run.
 
 ## 9. Test Backlog
 
@@ -131,18 +131,20 @@ Status keys:
 - [x] Verify CLI behavior for `--path`.
 - [x] Verify CLI behavior for `init`.
 - [x] Verify CLI behavior for `doctor`.
+- [x] Verify CLI behavior for `validate`.
+- [x] Verify CLI behavior for `resume-check`.
 - [x] Verify scaffold manifest contents.
 - [x] Verify memory bucket scaffolding exists.
-- [ ] Add idempotent `init` coverage that asserts existing user edits are preserved.
-- [ ] Add config schema validation tests.
-- [ ] Add snapshot tests for scaffolded markdown files.
-- [ ] Add resume-state tests around `status.md` and `config.json`.
-- [ ] Add deeper memory layout tests.
-- [ ] Add host compatibility tests for Codex loading patterns.
-- [ ] Add host compatibility tests for Claude loading patterns.
-- [ ] Add host compatibility tests for Gemini loading patterns.
-- [ ] Add tests for any future `validate` command.
-- [ ] Add tests for any future resume-check command.
+- [x] Add idempotent `init` coverage that asserts existing user edits are preserved.
+- [x] Add config schema validation tests.
+- [x] Add snapshot tests for scaffolded markdown files.
+- [x] Add resume-state tests around `status.md` and `config.json`.
+- [x] Add deeper memory layout tests.
+- [x] Add host compatibility tests for Codex loading patterns.
+- [x] Add host compatibility tests for Claude loading patterns.
+- [x] Add host compatibility tests for Gemini loading patterns.
+- [x] Add tests for any future `validate` command.
+- [x] Add tests for any future resume-check command.
 
 ## 10. CI And Release Hygiene
 

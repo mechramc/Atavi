@@ -37,6 +37,7 @@ This repo ships:
 - `templates/*` for brief, POD, CPR, and report formats
 - `bin/atavi.js` as the CLI entrypoint
 - `src/*` for scaffold helpers, doctor checks, and protocol manifests
+- `HOSTS.md` for Codex, Claude, and Gemini loading and resume guidance
 - project docs covering architecture, contribution workflow, and testing
 
 ## Quick start
@@ -54,6 +55,8 @@ node bin/atavi.js --help
 node bin/atavi.js --path
 node bin/atavi.js init .
 node bin/atavi.js doctor
+node bin/atavi.js validate
+node bin/atavi.js resume-check
 ```
 
 ### Typical flow
@@ -78,7 +81,14 @@ Scaffold `.atavi/` with:
 - `brief.md`
 - `config.json`
 - `status.md`
+- `conflicts.md`
+- `kill-log.md`
+- `run-log.md`
 - `ATAVI-REPORT.md`
+- `pass-1/README.md`
+- `pass-1/synthesis.md`
+- `pass-1/decision.md`
+- `pass-1/cross-pollination/README.md`
 - `registries/claims.md`
 - `registries/experiments.md`
 - `registries/prior-art.md`
@@ -92,6 +102,15 @@ Scaffold `.atavi/` with:
 ### `atavi doctor`
 
 Verify the package contains the full protocol and template surface.
+
+### `atavi validate [target]`
+
+Validate `.atavi/config.json` for the current thin package contract.
+
+### `atavi resume-check [target]`
+
+Validate `.atavi/config.json` and `.atavi/status.md` before a host attempts to
+resume an interrupted run.
 
 ## Product shape
 
@@ -118,6 +137,9 @@ ATAVI assumes the host AI can:
 - browse the web for Scout runs
 
 Without web search, Scout mode and full novelty gating are not valid.
+
+See `HOSTS.md` for explicit host loading order, registry ownership, and resume
+workflow guidance.
 
 ## Current status
 

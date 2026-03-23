@@ -1,6 +1,8 @@
 import { commandDoctor } from "./commands/doctor.js";
 import { commandInit } from "./commands/init.js";
 import { commandPath } from "./commands/path.js";
+import { commandResumeCheck } from "./commands/resume-check.js";
+import { commandValidate } from "./commands/validate.js";
 
 const VERSION = "0.1.0";
 
@@ -15,11 +17,15 @@ Usage:
   atavi --path
   atavi init [target]
   atavi doctor
+  atavi validate [target]
+  atavi resume-check [target]
 
 Commands:
   --path      Print the absolute path to the packaged protocol directory.
   init        Scaffold a .atavi workspace in the target directory.
   doctor      Verify packaged protocol files and basic host prerequisites.
+  validate    Validate the scaffolded .atavi/config.json contract.
+  resume-check Validate `.atavi/config.json` and `.atavi/status.md` for resume safety.
 
 Notes:
   atavi is intentionally thin. The host AI runs the protocol.
@@ -54,6 +60,15 @@ export async function runCli(argv, io = process) {
     return;
   }
 
+  if (command === "validate") {
+    await commandValidate(rest, io);
+    return;
+  }
+
+  if (command === "resume-check") {
+    await commandResumeCheck(rest, io);
+    return;
+  }
+
   throw new Error(`Unknown command: ${command}`);
 }
-
