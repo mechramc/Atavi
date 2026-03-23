@@ -14,8 +14,12 @@ test("scaffold manifest includes required top-level files", () => {
       "registries/claims.md",
       "registries/experiments.md",
       "registries/prior-art.md",
-      "memory/README.md"
+      "memory/README.md",
+      "memory/prior-art-cache/README.md",
+      "memory/kill-archive/README.md",
+      "memory/claim-patterns/README.md",
+      "memory/convergence-history/README.md",
+      "memory/strategy-insights/README.md"
     ]
   );
 });
-

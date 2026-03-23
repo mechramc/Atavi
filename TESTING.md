@@ -33,6 +33,7 @@ Current coverage:
 - scaffold file existence
 - idempotent init behavior
 - registry and report placeholders
+- explicit memory bucket scaffolding
 
 ## Planned deepening inside this repo
 

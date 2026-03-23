@@ -107,6 +107,9 @@ projects over time. The architecture is intentionally explicit:
 - convergence history
 - strategy insights
 
+The scaffold reflects those buckets directly under `.atavi/memory/` so the
+host can persist artifacts without inventing ad hoc subdirectories.
+
 Memory needs governance or it turns into an echo chamber. The package docs
 therefore treat expiration, contradiction handling, weighting, and scoping as
 first-class design constraints, not implementation polish.
@@ -146,4 +149,3 @@ The current source tree leaves room for:
 - migration tooling for `.atavi/` schema changes
 
 Those can be added without changing the core product model above.
-

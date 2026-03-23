@@ -49,8 +49,13 @@ test("atavi init scaffolds a workspace", async () => {
 
   const config = await readFile(path.join(tmp, ".atavi", "config.json"), "utf8");
   const status = await readFile(path.join(tmp, ".atavi", "status.md"), "utf8");
+  const memoryReadme = await readFile(
+    path.join(tmp, ".atavi", "memory", "strategy-insights", "README.md"),
+    "utf8"
+  );
   assert.match(config, /"mode": "full"/);
   assert.match(status, /run_status: initialized/);
+  assert.match(memoryReadme, /Strategy Insights/);
 });
 
 test("atavi doctor passes when packaged files exist", async () => {
@@ -58,4 +63,3 @@ test("atavi doctor passes when packaged files exist", async () => {
   await runCli(["doctor"], io);
   assert.match(io.getStdout(), /ATAVI doctor: OK/);
 });
-

@@ -123,7 +123,46 @@ This file is populated by the host AI after a run completes.
 This directory stores persistent prior art cache entries, kill archive records,
 claim patterns, convergence history, and strategy insights for related runs.
 `
+    },
+    {
+      relativePath: "memory/prior-art-cache/README.md",
+      contents: `# Prior Art Cache
+
+Store reusable novelty-search findings, source summaries, and scoped retrieval
+metadata here for future ATAVI runs.
+`
+    },
+    {
+      relativePath: "memory/kill-archive/README.md",
+      contents: `# Kill Archive
+
+Record rejected claims and experiments here, including the evidence or novelty
+verdict that killed them.
+`
+    },
+    {
+      relativePath: "memory/claim-patterns/README.md",
+      contents: `# Claim Patterns
+
+Capture recurring claim structures, failure modes, and useful formalization
+patterns that can accelerate future theorist passes.
+`
+    },
+    {
+      relativePath: "memory/convergence-history/README.md",
+      contents: `# Convergence History
+
+Track prior run outcomes, convergence scores, and pass-level decision patterns
+so future runs can detect repetition and premature agreement.
+`
+    },
+    {
+      relativePath: "memory/strategy-insights/README.md",
+      contents: `# Strategy Insights
+
+Store durable heuristics about search strategy, evaluation design, and
+cross-domain synthesis that proved useful across runs.
+`
     }
   ];
 }
-

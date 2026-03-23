@@ -83,6 +83,11 @@ Scaffold `.atavi/` with:
 - `registries/experiments.md`
 - `registries/prior-art.md`
 - `memory/README.md`
+- `memory/prior-art-cache/README.md`
+- `memory/kill-archive/README.md`
+- `memory/claim-patterns/README.md`
+- `memory/convergence-history/README.md`
+- `memory/strategy-insights/README.md`
 
 ### `atavi doctor`
 
@@ -120,4 +125,3 @@ This repository now contains the real package skeleton, protocol markdown,
 agent role files, templates, docs, tests, and CI scaffolding. The next layer of
 work is to deepen the host integration and memory machinery without changing
 the package shape.
-

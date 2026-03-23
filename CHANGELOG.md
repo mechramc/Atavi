@@ -8,4 +8,4 @@
 - add architecture, contribution, and testing docs
 - add package-manifest verification and node test scaffolding
 - add CI to enforce package and scaffold integrity
-
+- expand `.atavi` scaffolding with explicit memory bucket directories
