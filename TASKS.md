@@ -174,3 +174,6 @@ Status keys:
 - [ ] Add host-specific starter scripts where they improve onboarding.
 - [ ] Create a short docs site or GitHub Pages version of the protocol.
 - [ ] Gather real user feedback on the workflow and refine the protocol from usage.
+- [x] Refine the host prompts so ATAVI runs stay visibly interactive instead of silently scanning.
+- [x] Require clarifying questions and explicit option selection when run shape is ambiguous.
+- [x] Require visible progress updates during repo scan and artifact generation.

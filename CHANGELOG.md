@@ -19,3 +19,10 @@
 - add memory import/export helpers for `.atavi/memory`
 - add release-surface verification and npm-based CI coverage
 - add starter prompt files for Codex, Claude, and Gemini
+
+## Unreleased
+
+- strengthened host guidance and starter prompts so Codex, Claude, and Gemini
+  are expected to ask clarifying questions, present explicit options when the
+  run shape is ambiguous, and keep visible progress updates flowing during ATAVI
+  startup and execution

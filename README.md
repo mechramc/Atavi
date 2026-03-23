@@ -14,6 +14,12 @@ ATAVI is intentionally thin. The package does not run the research loop for
 you. It ships the protocol, role files, templates, and CLI helpers that a host
 AI can load and execute.
 
+Even though the package is thin, the expected host experience is interactive:
+the host should acknowledge startup, ask clarifying questions when the brief is
+underspecified, present options when there are multiple viable run shapes, and
+keep visible progress updates flowing while it scans and writes `.atavi/`
+artifacts.
+
 ATAVI is published on npm as [`atavi`](https://www.npmjs.com/package/atavi).
 
 ## What You Get
@@ -105,6 +111,13 @@ Typical flow:
 3. Tell the host AI to run ATAVI on the workspace.
 4. The host writes PODs, CPRs, synthesis records, decision records, registry updates, and memory artifacts into `.atavi/`.
 5. Review `.atavi/ATAVI-REPORT.md` when the run finishes.
+
+Expected host behavior during the run:
+
+- acknowledge that ATAVI was detected
+- ask clarifying questions before long repo scans when the brief is ambiguous
+- present numbered options when mode, scope, or agent mix is unclear
+- provide short progress updates while scanning and writing artifacts
 
 ### 4. Resume or repair later
 

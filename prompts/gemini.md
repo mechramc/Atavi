@@ -15,6 +15,25 @@ Do not assume hidden orchestration state outside `.atavi/`.
 6. Run `atavi validate .` before a fresh run or `atavi resume-check .` before a
    resumed run.
 
+## Session Behavior
+
+Before deep scanning:
+
+- confirm that you are starting an ATAVI run
+- tell the user what you will inspect first
+- ask clarifying questions when the brief, objective, constraints, or success
+  criteria are unclear
+- present numbered options when more than one run mode, scope, or agent mix is
+  reasonable
+- wait for the user when those decisions materially affect the run
+
+During execution:
+
+- keep visible progress updates on screen while scanning, validating, and
+  writing artifacts
+- summarize the initial scan before moving into pass execution
+- do not disappear into silent analysis for long periods
+
 ## Operating Rules
 
 - The host AI owns orchestration and synthesis.

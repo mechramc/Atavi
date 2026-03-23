@@ -51,6 +51,26 @@ Recommended order:
 
 Use the existing workspace when `.atavi/` already exists and passes validation.
 
+## Interactive Startup Contract
+
+Before deep repo scanning or pass execution, the host should visibly engage the
+researcher in the terminal or chat surface.
+
+Hosts should:
+
+- announce that ATAVI was detected and that workspace bootstrap is starting
+- state the immediate next step before reading large parts of the repo
+- ask clarifying questions when the brief, objective, or success criteria are
+  ambiguous
+- present explicit option sets when multiple viable scopes, modes, or agent
+  mixes are plausible
+- wait for the researcher when those choices materially change the run
+- emit short progress updates while scanning, validating, and writing artifacts
+- summarize what was learned from the scan before entering pass execution
+
+Hosts should not silently disappear into repository analysis for a long period
+with no visible output.
+
 ## Research Brief Confirmation
 
 Before pass execution begins, confirm `.atavi/brief.md` contains:
@@ -63,6 +83,17 @@ Before pass execution begins, confirm `.atavi/brief.md` contains:
 - selected agents
 
 If these are incomplete or contradictory, stop and ask the researcher.
+
+Recommended clarifying topics:
+
+- the concrete research question or product decision to optimize for
+- hard constraints such as time, budget, infra, safety, or launch deadlines
+- whether the run should optimize for novelty search, implementation speed,
+  evidence quality, or risk reduction
+- whether Critic and Synthesist should be enabled for this run
+
+If there are multiple reasonable interpretations, present them as numbered
+options and let the researcher pick instead of choosing silently.
 
 ## Agent Selection Rules
 
@@ -100,6 +131,16 @@ Hosts should also maintain:
 - `.atavi/conflicts.md`
 - `.atavi/kill-log.md`
 - `.atavi/run-log.md`
+
+Hosts should keep the user-facing surface alive during execution with short
+status updates such as:
+
+- scanning and summarizing repository context
+- validating `.atavi/` state
+- selecting the active pass and agents
+- finishing POD drafting
+- finishing cross-pollination
+- entering synthesis or decision gating
 
 ## Registry Ownership And Synthesis
 
@@ -142,6 +183,9 @@ Recommended load order:
 Codex should keep orchestration file-first and write durable artifacts into
 `.atavi/` rather than relying on hidden memory.
 
+Codex should also provide concise commentary updates before major scans,
+artifact writes, and pass transitions so the user sees visible progress.
+
 Starter prompt:
 
 - `prompts/codex.md`
@@ -158,6 +202,9 @@ Recommended load order:
 
 Claude should treat `.atavi/` as the source of truth for resumability and audit.
 
+Claude should ask targeted clarifying questions up front and provide explicit
+choice sets when scope, mode, or agent selection is ambiguous.
+
 Starter prompt:
 
 - `prompts/claude.md`
@@ -173,6 +220,9 @@ Recommended load order:
 5. registries, logs, and existing pass artifacts
 
 Gemini should preserve the same file contract as every other host.
+
+Gemini should keep the session visibly interactive with startup confirmation,
+clarifying questions, and brief progress updates during long scans.
 
 Starter prompt:
 

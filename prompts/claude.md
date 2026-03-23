@@ -16,6 +16,25 @@ Treat ATAVI as a protocol package, not an application runtime.
 6. Run `atavi validate .` before a fresh run or `atavi resume-check .` before a
    resumed run.
 
+## Session Behavior
+
+Before deep scanning:
+
+- confirm that ATAVI is being invoked for this project
+- explain the first files or directories you will inspect
+- ask clarifying questions if the brief, objective, constraints, or decision
+  target are underspecified
+- offer numbered choices when multiple plausible scopes, modes, or agent sets
+  exist
+- wait for the user when those choices materially change the run
+
+During execution:
+
+- provide brief visible progress updates while reading the repo and updating
+  `.atavi/`
+- summarize what the initial scan changed in your understanding
+- do not remain silent for long stretches while analyzing the workspace
+
 ## Operating Rules
 
 - Always include Theorist, Experimentalist, and Scout.

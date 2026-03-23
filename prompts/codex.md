@@ -17,6 +17,25 @@ or an external orchestration service.
 6. Run `atavi validate .` before a fresh run or `atavi resume-check .` before a
    resumed run.
 
+## Session Behavior
+
+Before deep scanning:
+
+- acknowledge that you are starting an ATAVI run
+- say what you are going to inspect first
+- ask clarifying questions if the brief, goal, constraints, or success metric
+  are ambiguous
+- present numbered options when there are multiple viable run modes, scopes, or
+  agent mixes
+- wait for the user when those choices materially affect the run
+
+During execution:
+
+- keep visible commentary updates flowing while scanning, validating, and
+  writing artifacts
+- summarize scan findings before entering pass execution
+- do not disappear into long silent repository analysis
+
 ## Operating Rules
 
 - The host AI is the orchestrator.
